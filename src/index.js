@@ -1,33 +1,26 @@
-import 'phaser';
-import pkg from 'phaser/package.json';
-import introImage from 'img/study.png';
+import "phaser";
+import { Title } from "./Title";
+import { MainGame } from "./MainGame";
 
-// This is the entry point of your game.
-
-const width = 800;
-const height = 600;
+const width = window.innerWidth;
+const height = window.innerHeight;
 
 const config = {
-  width,
-  height,
   type: Phaser.AUTO,
-  scene: { preload, create },
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.FIT,
+    width: 1200,
+    height: 1200
+  },
+  backgroundColor: 0x000000,
+  scene: [Title, MainGame],
+  physics: {
+    default: "arcade",
+    arcade: {
+      debug: false
+    }
+  }
 };
 
 const game = new Phaser.Game(config);
-
-function preload() {
-  this.load.image('study', introImage);
-}
-
-function create() {
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const welcomeMessage = `Welcome to Phaser ${pkg.version}`;
-
-  this.add.image(centerX, centerY * 1.2, 'study');
-
-  this.add
-    .text(centerX, centerY * 0.8, welcomeMessage, { font: "bold 19px Arial", fill: "#fff" })
-    .setOrigin(0.5, 0.5);
-}
