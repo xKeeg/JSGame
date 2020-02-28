@@ -24,10 +24,9 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "rimraf -rf dist && webpack --mode production"
   },
   "dependencies": {
-    "phaser": "^3.22.0",
-    "webpack": "^4.41.6"
+    "phaser": "^3.22.0"
   }
 }
