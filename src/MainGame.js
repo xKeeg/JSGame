@@ -25,6 +25,16 @@ export class MainGame extends Phaser.Scene {
     this.spawnTimeout = false;
     this.score = 0;
 
+    // Draw Background
+    this.add
+      .image(0, 0, "background")
+      .setOrigin(0, 0)
+      .setScale(3);
+
+    // Decorative Center  Ball
+    this.cannon = this.add.image(this.centerX, this.centerY, "cannon");
+    this.physics.add.existing(this.cannon);
+
     // Scaling Difficulty
     this.increaseDifficulty("begin");
     this.difficultyTimer = this.time.addEvent({
@@ -44,12 +54,6 @@ export class MainGame extends Phaser.Scene {
       loop: true
     });
 
-    // Draw Background
-    this.add
-      .image(0, 0, "background")
-      .setOrigin(0, 0)
-      .setScale(3);
-
     // Group and Collider Setup
     this.players = this.add.group();
     this.notes = this.add.group();
@@ -58,6 +62,14 @@ export class MainGame extends Phaser.Scene {
       this.notes,
       this.players,
       this.hitNote,
+      null,
+      this
+    );
+
+    this.physics.add.overlap(
+      this.notes,
+      this.cannon,
+      this.hitPlayer,
       null,
       this
     );
@@ -77,9 +89,6 @@ export class MainGame extends Phaser.Scene {
       Phaser.Input.Keyboard.KeyCodes.DOWN
     );
 
-    // Decorative Center  Ball
-    this.add.image(this.centerX, this.centerY, "cannon").setScale(0.5);
-
     this.UI = this.scene.launch("UI");
     this.sound.play("music");
   }
@@ -94,7 +103,7 @@ export class MainGame extends Phaser.Scene {
   }
 
   hitNote(note, player) {
-    this.score++;
+    this.increaseScore();
 
     if (player.collides === true) {
       player.destroy();
@@ -191,5 +200,15 @@ export class MainGame extends Phaser.Scene {
       default:
         break;
     }
+  }
+
+  hitPlayer(note, cannon) {
+    note.destroy();
+    console.log("hitME");
+  }
+
+  increaseScore(amount = 1) {
+    // Play Sounds / Show Animation
+    this.score += amount;
   }
 }
