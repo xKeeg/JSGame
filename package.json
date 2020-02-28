@@ -27,6 +27,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "phaser": "^3.22.0"
+    "phaser": "^3.22.0",
+    "webpack": "^4.41.6"
   }
 }
