@@ -1,3 +1,5 @@
+var PORT = process.env.PORT;
+
 import "phaser";
 import { Title } from "./Title";
 import { MainGame } from "./MainGame";
