@@ -1,0 +1,32 @@
+{
+  "name": "jsgame",
+  "version": "0.0.1",
+  "description": "TMP",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xKeeg/JSGame.git"
+  },
+  "author": {
+    "name": "Keegan Manton",
+    "email": "b9010662@my.shu.ac.uk",
+    "url": "https://xkeeg.github.io"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "babel-loader": "^8.0.6",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "rm -rf dist && webpack --mode production"
+  },
+  "dependencies": {
+    "phaser": "^3.22.0"
+  }
+}
