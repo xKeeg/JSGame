@@ -10,6 +10,9 @@ export class MainGame extends Phaser.Scene {
     this.centerX = this.cameras.main.centerX;
     this.centerY = this.cameras.main.centerY;
 
+    this.touchX;
+    this.touchY;
+
     this.lastDirection = 0;
 
     this.DEFAULT_BPM = 105; // Raw BPM of the music. DO NOT CHANGE
@@ -59,7 +62,6 @@ export class MainGame extends Phaser.Scene {
       this
     );
 
-    // Init Keyboard
     this.keyLEFT = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.LEFT
     );
@@ -78,38 +80,17 @@ export class MainGame extends Phaser.Scene {
     // Decorative Center  Ball
     this.add.image(this.centerX, this.centerY, "cannon").setScale(0.5);
 
-    ////////////////////////////// Refactor This into UI class /////////////////////////////////////////
-    this.add
-      .image(
-        20,
-        20,
-        "UI",
-        "yellow_button13",
-        null,
-        Phaser.Loader.TEXTURE_ATLAS_JSON_HASH
-      )
-      .setScale(2)
-      .setOrigin(0);
-
-    this.UIText = this.add.text(50, 45, "SCORE: " + this.score.toString(), {
-      fontFamily: '"Impact"',
-      color: "#AB9743",
-      fontSize: "4em"
-    });
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    this.UI = this.scene.launch("UI");
     this.sound.play("music");
   }
 
   update() {
     this.inputHandler();
 
+    // Delete any offscreen balls
     this.players.children.each(function(ball) {
       ball.offScreen();
     }, this);
-
-    this.UIUpdate(); // Classify this
   }
 
   hitNote(note, player) {
@@ -210,9 +191,5 @@ export class MainGame extends Phaser.Scene {
       default:
         break;
     }
-  }
-
-  UIUpdate() {
-    this.UIText.setText("Score: " + this.score);
   }
 }
