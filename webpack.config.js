@@ -1,12 +1,14 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+var PORT = process.env.PORT;
+
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = {
   output: {
-    filename: '[hash].js',
+    filename: "[hash].js"
   },
   resolve: {
-    modules: ['src', 'node_modules'],
+    modules: ["src", "node_modules"]
   },
   module: {
     rules: [
@@ -14,41 +16,41 @@ const config = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
+            presets: ["@babel/preset-env"]
+          }
+        }
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use: 'file-loader',
+        use: "file-loader"
       },
       {
         test: /\.(vert|frag)$/,
-        use: 'raw-loader',
-      },
-    ],
+        use: "raw-loader"
+      }
+    ]
   },
-  stats: 'minimal',
-  devtool: 'source-map',
+  stats: "minimal",
+  devtool: "source-map",
   performance: {
-    hints: false,
+    hints: false
   },
   plugins: [
     new webpack.DefinePlugin({
       CANVAS_RENDERER: true,
-      WEBGL_RENDERER: true,
+      WEBGL_RENDERER: true
     }),
     new HtmlWebpackPlugin({
-      favicon: 'src/img/favicon.png',
-      template: 'src/index.html',
-    }),
+      favicon: "src/img/favicon.png",
+      template: "src/index.html"
+    })
   ],
   devServer: {
     port: 8080,
-    stats: 'minimal',
-  },
-}
+    stats: "minimal"
+  }
+};
 
-module.exports = config
+module.exports = config;
