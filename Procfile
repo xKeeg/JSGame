@@ -1,1 +1,1 @@
-web: node webpack
+web: node node_modules\webpack\bin\webpack.js --mode production
