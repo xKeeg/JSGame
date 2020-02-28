@@ -1,1 +1,1 @@
-web: node start
+web: node webpack-dev-server --mode development
