@@ -1,7 +1,6 @@
 import "phaser";
 import { Title } from "./Title";
 import { MainGame } from "./MainGame";
-import { UI } from "./UI";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -15,7 +14,7 @@ const config = {
     height: 1200
   },
   backgroundColor: 0x000000,
-  scene: [Title, MainGame, UI],
+  scene: [Title, MainGame],
   physics: {
     default: "arcade",
     arcade: {
