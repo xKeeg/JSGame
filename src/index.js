@@ -4,7 +4,7 @@ import { MainGame } from "./MainGame";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
-
+var tmpasdsa;
 const config = {
   type: Phaser.AUTO,
   scale: {
@@ -18,7 +18,7 @@ const config = {
   physics: {
     default: "arcade",
     arcade: {
-      debug: true
+      debug: false
     }
   }
 };
